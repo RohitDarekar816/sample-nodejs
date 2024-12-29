@@ -1,0 +1,44 @@
+---
+kind: pipeline
+type: digitalocean
+name: Building docker image for nodejs
+
+token:
+    from_secret: token
+
+server:
+    image: ubuntu-24-10-x64
+    size: s-1vcpu-512mb-10gb
+    region: sfo3
+
+steps:
+    - name: cloneing the git repo
+      commands:
+          - git clone https://github.com/RohitDarekar816/sample-nodejs.git
+
+    - name: Installing the docker
+      commands:
+          - sudo apt install docker.io -y
+
+    - name: Building docker image
+      commands:
+          - docker build -t sample-nodejs .
+
+    - name: login to digitalocean via api token
+      environment:
+          DO_USERNAME:
+              from_secret: DO_USERNAME
+          DO_API_TOKEN:
+              from_secret: token
+      commands:
+          - echo $DO_API_TOKEN | docker login registry.digitalocean.com --username $DO_USERNAME --password-stdin
+          - docker tag notes-app registry.digitalocean.com/pipelineaws/sample-nodejs
+          - docker push registry.digitalocean.com/pipelineaws/sample-nodejs
+
+trigger:
+    event:
+        - push
+        - pull_request
+    branch:
+        - main
+#dop_v1_2fa6844b7543a2c986f76b9a78994040299e7a0e0acf2d2cc445820587f4e6a5
