@@ -10,7 +10,7 @@ server:
     image: ubuntu-24-10-x64
     size: s-1vcpu-512mb-10gb
     region: sfo3
-
+# pipeline start here
 steps:
     - name: cloneing the git repo
       commands:
