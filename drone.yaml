@@ -32,7 +32,7 @@ steps:
               from_secret: token
       commands:
           - echo $DO_API_TOKEN | docker login registry.digitalocean.com --username $DO_USERNAME --password-stdin
-          - docker tag notes-app registry.digitalocean.com/pipelineaws/sample-nodejs
+          - docker tag sample-nodejs registry.digitalocean.com/pipelineaws/sample-nodejs
           - docker push registry.digitalocean.com/pipelineaws/sample-nodejs
 
 trigger:
