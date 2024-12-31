@@ -6,8 +6,8 @@ steps:
 - name: send-post-request
   image: curlimages/curl:latest
   environment:
-    DIGITALOCEAN_TOKEN:
-        from_secret: token
+        DIGITALOCEAN_TOKEN:
+            from_secret: DIGITALOCEAN_TOKEN
   commands:
     - curl -X POST \
 -H "Content-Type: application/json" \
