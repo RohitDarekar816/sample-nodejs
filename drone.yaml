@@ -12,7 +12,7 @@ steps:
   curl_job:
     variables:
         REQUEST_BODY: '{"name":"My SSH Public Key","public_key":"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCLIOXe/rYLQdLreZ2zzPincoykqpgFnoCV2oml0/eH5Y1uCByTEA8FUJyaQFfNPy0EQGgYRfZDedinA9hs1SLtyeJKmA8FyaW1AoDun8zGUvBgxUcYpIWKUi5Fl33L4rQZG05jtQpAcWtTSe/udsNllcrblRaLAXVaTgy3Fxuan8LhOqkXcvW8ZXYICDVYZGhVPbnsec+/cRLCkqQE1UrLL+tDvVqOfbKGbE3UPxemGAAEnZYdn/asF+uBDYN2uIUmjMJIrWCHuwtBQnjebMurNO4JtQkeAIWrYPn9rnKk+HW2PdkvNPMP4oH0FIkWLL5A/TkUMjgv78T3pPQjDWjr rsa-key-20241231 example"}'
-    script: >
+    commands: >
         curl -X POST "https://api.digitalocean.com/v2/account/keys"
         -H "Content-Type: application/json"
         -H "Authorization: Bearer $DIGITALOCEAN_TOKEN" 
