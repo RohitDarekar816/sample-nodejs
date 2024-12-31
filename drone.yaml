@@ -7,7 +7,7 @@ steps:
   image: curlimages/curl:latest
   environment:
     DIGITALOCEAN_TOKEN:
-      from_secret: token
+        from_secret: token
   commands:
     - curl -X POST \
 -H "Content-Type: application/json" \
