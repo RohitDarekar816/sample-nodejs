@@ -7,7 +7,7 @@ steps:
     image: curlimages/curl:latest  # Using curl's official image for this step
     environment:
       DIGITALOCEAN_TOKEN:
-        from_secret: token  # Assumes you have this secret configured in Drone
+        from_secret: DIGITALOCEAN_TOKEN  # Assumes you have this secret configured in Drone
     commands:
       - |
         curl -X POST \
