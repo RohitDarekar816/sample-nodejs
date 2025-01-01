@@ -4,10 +4,10 @@ name: add-ssh-key
 
 steps:
   - name: add-digitalocean-ssh-key
-    image: curlimages/curl:latest  # Using curl's official image for this step
+    image: curlimages/curl:latest
     environment:
       DIGITALOCEAN_TOKEN:
-        from_secret: DIGITALOCEAN_TOKEN  # Assumes you have this secret configured in Drone
+        from_secret: DIGITALOCEAN_TOKEN
     commands:
       - |
         curl -X POST \
