@@ -1,27 +1,5 @@
 ---
 kind: pipeline
-name: add-ssh-key
-
-steps:
-  - name: add-digitalocean-ssh-key
-    image: curlimages/curl:latest
-    environment:
-      DIGITALOCEAN_TOKEN:
-        from_secret: DIGITALOCEAN_TOKEN
-    commands:
-      - |
-        curl -X POST \
-        -H "Content-Type: application/json" \
-        -H "Authorization: Bearer $DIGITALOCEAN_TOKEN" \
-        -d '{"name":"This is a test key","public_key":"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIT+GpvMKvRZbDJoFXwGDToYp/4RlJlUook6E9UOZdzv example"}' \
-        "https://api.digitalocean.com/v2/account/keys"
-
-    
-    
-
-
----
-kind: pipeline
 type: digitalocean
 name: Building docker image for nodejs
 
@@ -32,7 +10,7 @@ server:
     image: ubuntu-24-10-x64
     size: s-1vcpu-512mb-10gb
     region: sfo3
-# pipeline start here
+# pipeline start here with ssh key in digitalocean
 steps:
     - name: cloneing the git repo
       commands:
