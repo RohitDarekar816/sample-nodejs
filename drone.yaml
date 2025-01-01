@@ -20,42 +20,42 @@ steps:
     
 
 
-# ---
-# kind: pipeline
-# type: digitalocean
-# name: Building docker image for nodejs
+---
+kind: pipeline
+type: digitalocean
+name: Building docker image for nodejs
 
-# token:
-#     from_secret: token
+token:
+    from_secret: token
 
-# server:
-#     image: ubuntu-24-10-x64
-#     size: s-1vcpu-512mb-10gb
-#     region: sfo3
-# # pipeline start here
-# steps:
-#     - name: cloneing the git repo
-#       commands:
-#           - git clone https://github.com/RohitDarekar816/sample-nodejs.git
+server:
+    image: ubuntu-24-10-x64
+    size: s-1vcpu-512mb-10gb
+    region: sfo3
+# pipeline start here
+steps:
+    - name: cloneing the git repo
+      commands:
+          - git clone https://github.com/RohitDarekar816/sample-nodejs.git
 
-#     - name: Installing the docker
-#       commands:
-#           - sudo apt install docker.io -y
+    - name: Installing the docker
+      commands:
+          - sudo apt install docker.io -y
 
-#     - name: Building docker image
-#       commands:
-#           - docker build -t sample-nodejs .
+    - name: Building docker image
+      commands:
+          - docker build -t sample-nodejs .
 
-#     - name: login to digitalocean via api token
-#       environment:
-#           DO_USERNAME:
-#               from_secret: DO_USERNAME
-#           DO_API_TOKEN:
-#               from_secret: token
-#       commands:
-#           - echo $DO_API_TOKEN | docker login registry.digitalocean.com --username $DO_USERNAME --password-stdin
-#           - docker tag sample-nodejs registry.digitalocean.com/pipelineaws/sample-nodejs
-#           - docker push registry.digitalocean.com/pipelineaws/sample-nodejs
+    - name: login to digitalocean via api token
+      environment:
+          DO_USERNAME:
+              from_secret: DO_USERNAME
+          DO_API_TOKEN:
+              from_secret: token
+      commands:
+          - echo $DO_API_TOKEN | docker login registry.digitalocean.com --username $DO_USERNAME --password-stdin
+          - docker tag sample-nodejs registry.digitalocean.com/pipelineaws/sample-nodejs
+          - docker push registry.digitalocean.com/pipelineaws/sample-nodejs
 
 trigger:
     event:
